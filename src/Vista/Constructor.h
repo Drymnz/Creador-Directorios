@@ -10,6 +10,8 @@ class Constructor
 {
 private:
     bool *exit;
+    int *limiteSuperior;
+    int *limiteInverior;
     string dato;
     MenuPrincipal mostrar;
     Petitions pet;
@@ -17,4 +19,5 @@ public:
     Constructor();
     void iniciar();
     void menu();
+    void configuraciones();
 };

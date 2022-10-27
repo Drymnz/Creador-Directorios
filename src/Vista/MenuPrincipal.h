@@ -10,6 +10,7 @@ private:
 public:
     MenuPrincipal(){};
     void menu();
+    void configuraciones();
     void terminos();
     void println(string);
     void forLine(int, string);
