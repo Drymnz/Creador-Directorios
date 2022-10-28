@@ -3,8 +3,8 @@ Constructor::Constructor(){
     exit = (bool *)malloc(sizeof(bool));
     limiteInferior = (int *)malloc(sizeof(int));
     limiteSuperior= (int *)malloc(sizeof(int));
-    *limiteInferior = 2;
-    *limiteSuperior = 2;
+    *limiteInferior = LIMITE_INICIAL;
+    *limiteSuperior = LIMITE_INICIAL;
 }
 void Constructor::iniciar(){
     *exit = false;
@@ -38,7 +38,7 @@ void Constructor::menu()
     while ((opcion).compare(palabra_clave_salir) != 0)
     {
         //mostrar las opciones de menu
-        mostrar.menu(to_string(*this->limiteSuperior),to_string(*this->limiteInferior));
+        mostrar.menu(to_string(*this->limiteSuperior),to_string(*this->limiteInferior),this->nombreArchivoSalida,this->extencionArchivoSalida);
         (opcion) = pet.getString(WHITE);
         // ejecutar la logica del programa
         if ((opcion).compare("1") == 0)
@@ -83,29 +83,31 @@ void Constructor::configuraciones(){
     while ((opcion).compare(palabra_clave_salir) != 0)
     {
         //mostrar las opciones de menu
-        mostrar.configuraciones(to_string(*this->limiteSuperior),to_string(*this->limiteInferior));
+        mostrar.configuraciones(to_string(*this->limiteSuperior),to_string(*this->limiteInferior),nombreArchivoSalida,extencionArchivoSalida);
         (opcion) = pet.getString(WHITE);
         // Editar el limite inferior
         if ((opcion).compare("1") == 0)
         {
-            mostrar.println("Ingrese el numero para el limite inferior\n");
+            mostrar.println("Ingrese el nuevo nuemero de limite inferior\n");
             this->cambiarLimite(pet.getString(WHITE),*this->limiteInferior);
         }
         // Editar el limite superior
         else if ((opcion).compare("2") == 0)
         {
-            mostrar.println("Editar el limite superior\n");
+            mostrar.println("Ingrese el nuevo nuemero de limite superior\n");
             this->cambiarLimite(pet.getString(WHITE),*this->limiteSuperior);
         }
         // Editar el nombre del archivo
         else if ((opcion).compare("3") == 0)
         {
-            mostrar.println("Editar el nombre del archivo");
+            mostrar.println("Ingrese el nuevo nombre del archivo\n");
+            this->nombreArchivoSalida = pet.getString(WHITE);
         }
         // Editar el nombre de la extencion del archivo
         else if ((opcion).compare("4") == 0)
         {
-            mostrar.println("Editar listados");
+            mostrar.println("Ingrese el nuevo nombre de la extenxion del archivo\n");
+            this->extencionArchivoSalida = pet.getString(WHITE);
         }
         // Retroceder
         else if ((opcion).compare("0") == 0)

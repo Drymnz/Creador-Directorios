@@ -9,8 +9,8 @@ private:
     string icon = "*";
 public:
     MenuPrincipal(){};
-    void menu(string,string);
-    void configuraciones(string,string);
+    void menu(string,string,string,string);
+    void configuraciones(string,string,string,string);
     void terminos();
     void println(string);
     void forLine(int, string);
