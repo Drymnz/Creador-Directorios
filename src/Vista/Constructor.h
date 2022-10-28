@@ -11,13 +11,18 @@ class Constructor
 private:
     bool *exit;
     int *limiteSuperior;
-    int *limiteInverior;
+    int *limiteInferior;
+    string extencionArchivoSalida;
+    string nombreArchivoSalida;
     string dato;
     MenuPrincipal mostrar;
     Petitions pet;
 public:
     Constructor();
+    ~Constructor();
     void iniciar();
     void menu();
     void configuraciones();
+    void cambiarLimite(string,int&);
+
 };

@@ -1,8 +1,10 @@
 #include "Constructor.h"
 Constructor::Constructor(){
     exit = (bool *)malloc(sizeof(bool));
-    limiteInverior = (int *)malloc(sizeof(int));
+    limiteInferior = (int *)malloc(sizeof(int));
     limiteSuperior= (int *)malloc(sizeof(int));
+    *limiteInferior = 2;
+    *limiteSuperior = 2;
 }
 void Constructor::iniciar(){
     *exit = false;
@@ -36,7 +38,7 @@ void Constructor::menu()
     while ((opcion).compare(palabra_clave_salir) != 0)
     {
         //mostrar las opciones de menu
-        mostrar.menu();
+        mostrar.menu(to_string(*this->limiteSuperior),to_string(*this->limiteInferior));
         (opcion) = pet.getString(WHITE);
         // ejecutar la logica del programa
         if ((opcion).compare("1") == 0)
@@ -81,34 +83,31 @@ void Constructor::configuraciones(){
     while ((opcion).compare(palabra_clave_salir) != 0)
     {
         //mostrar las opciones de menu
-        mostrar.configuraciones();
+        mostrar.configuraciones(to_string(*this->limiteSuperior),to_string(*this->limiteInferior));
         (opcion) = pet.getString(WHITE);
-        // ejecutar la logica del programa
+        // Editar el limite inferior
         if ((opcion).compare("1") == 0)
         {
-            mostrar.println("se iniciara la ejecuccion");
+            mostrar.println("Ingrese el numero para el limite inferior\n");
+            this->cambiarLimite(pet.getString(WHITE),*this->limiteInferior);
         }
-        // Agregar listado
+        // Editar el limite superior
         else if ((opcion).compare("2") == 0)
         {
-            mostrar.println("Agregar listado");
+            mostrar.println("Editar el limite superior\n");
+            this->cambiarLimite(pet.getString(WHITE),*this->limiteSuperior);
         }
-        // Eliminar listado
+        // Editar el nombre del archivo
         else if ((opcion).compare("3") == 0)
         {
-            mostrar.println("Eliminar listado");
+            mostrar.println("Editar el nombre del archivo");
         }
-        // Editar listados
+        // Editar el nombre de la extencion del archivo
         else if ((opcion).compare("4") == 0)
         {
             mostrar.println("Editar listados");
         }
-        // Configuraciones
-        else if ((opcion).compare("5") == 0)
-        {
-            mostrar.println("Configuraciones");
-        }
-        // salir
+        // Retroceder
         else if ((opcion).compare("0") == 0)
         {
             (opcion) = palabra_clave_salir;
@@ -117,5 +116,30 @@ void Constructor::configuraciones(){
         {
             mostrar.println(ERROR);
         }
+    }
+}
+void Constructor::cambiarLimite(string _nuevoNumero,int& limite ){
+    if (this->pet.numString(_nuevoNumero))
+    {
+        limite = this->pet.stringToInt(_nuevoNumero);
+    }
+    else
+    {
+        mostrar.println(ERROR);
+    }
+    
+}
+Constructor::~Constructor(){
+    if (!this->exit)
+    {
+        delete exit;
+    }
+    if (!this->limiteSuperior)
+    {
+        delete limiteSuperior;
+    }
+    if (!this->limiteInferior)
+    {
+        delete limiteInferior;
     }
 }

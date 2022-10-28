@@ -1,7 +1,8 @@
 #include "MenuPrincipal.h"
-void MenuPrincipal::menu()
+void MenuPrincipal::menu(string limiteS, string limiteI)
 {
     this->forLine(spect, icon);
+    this->println("Limites -> Superior: <"+limiteS+"> Inferior:<"+limiteI+">");
     this->println("<<opcions 1>> \"Iniciar\"");
     this->println("<<opcions 2>> \"Agregar listado\"");
     this->println("<<opcions 3>> \"Eliminar listado\"");
@@ -10,8 +11,9 @@ void MenuPrincipal::menu()
     this->println("<<opcions 0>> \"Salir\"");
     this->forLine(spect, icon);
 }
-void MenuPrincipal::configuraciones(){
+void MenuPrincipal::configuraciones(string limiteS, string limiteI){
     this->forLine(spect, icon);
+    this->println("Limites -> Superior: <"+limiteS+"> Inferior:<"+limiteI+">");
     this->println("<<opcions 1>> \"Editar el limite inferior\"");
     this->println("<<opcions 2>> \"Editar el limite superior\"");
     this->println("<<opcions 3>> \"Editar el nombre del archivo\"");
